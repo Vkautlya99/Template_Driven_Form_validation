@@ -1,23 +1,32 @@
 <!-- template.component.html -->
 
-<div class="justify-center center bg-blue-500 font-semibold text-center mt-2 p-2 text-xl">
-  <h1>Template Registration Form</h1>
+<div class="justify-center center bg-blue-300 font-semibold text-center mt-2 p-2 text-xl">
+  <h1>Template Registration Form With Validation </h1>
 </div>
 
 <form class="text-center" #userdata="ngForm" (ngSubmit)="register(userdata)">
   <div>
-    First name: <input class="bg-slate-300 mt-2" type="text" placeholder="Type Your First name" name="fname" ngModel>
+    First name: <input class="firstname bg-slate-300 mt-2" type="text" placeholder="Type Your First name" name="fname"
+      fname required ngModel #firstname="ngModel"><br>
+    <p class="text-red-600 text-xs" *ngIf="firstname.touched && !firstname.valid">Enter Your First name</p>
+
   </div><br>
   <div>
-    Last name: <input class="bg-slate-300" type="text" placeholder="Type Your Last name" name="lname" ngModel>
+    Last name: <input class="bg-slate-300" type="text" placeholder="Type Your Last name" name="lname" lname required
+      ngModel #lastname="ngModel"><br>
+    <p class="text-red-600 text-xs" *ngIf="lastname.touched && lastname.invalid">Enter your last name</p>
   </div><br>
   <div>
-    Mail ID: <input class="bg-slate-300" type="text" placeholder="Type Your Email ID" name="mailid" ngModel>
+    Mail ID: <input class="bg-slate-300" type="text" placeholder="Type Your Email ID" name="mailid" mailid required
+      ngModel #mail="ngModel"><br>
+    <p class="text-red-600 text-xs" *ngIf="mail.touched && !mail.valid">Please enter the email </p>
   </div><br>
   <div>
-    User Name: <input class="bg-slate-300" type="text" placeholder="Type Your User-name" name="username" ngModel>
-  </div><br>
+    User Name: <input class="bg-slate-300" type="text" placeholder="Type Your User-name" name="username" username
+      required ngModel #username="ngModel">
+    <p class="text-red-600 text-xs" *ngIf="username.touched && !username.valid">Please enter the username </p>
+  </div>
   <div>
-    <button class="bg-green-500" type="submit" name="registerButton">Register</button>
+    <button class="btn mt-1 bg-black text-white" type="submit" name="register" [disabled]="!userdata.valid">Register</button>
   </div>
 </form>
